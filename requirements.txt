@@ -1,2 +1,4 @@
 Flask>=0.10.1
 jabberbot>=0.15
+netaddr>=0.7.12
+xmpppy>=0.5.0rc1
