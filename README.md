@@ -16,7 +16,7 @@ Inspired by php-notify (https://github.com/jmara/php-notify)
 
     pip install -r requirements.txt
 
-### Change the necessary settings
+### Change the necessary settings and add a *local_settings.py*
 
     jabber = {
         'id': 'dennis@jabber.example.com',
