@@ -21,7 +21,7 @@ Inspired by php-notify (https://github.com/jmara/php-notify)
     http://xmpppy.sourceforge.net/
     https://code.google.com/p/ipaddress-py/
 
-### Change the necessary settings
+### Change the necessary settings and add a *local_settings.py*
 
     jabber = {
         'id': 'dennis@jabber.example.com',
