@@ -16,13 +16,18 @@ from netaddr import IPAddress, IPNetwork
 from jabberbot import JabberBot
 from flask import Flask, request, jsonify, abort
 
-
 jabber = {
     'id': 'dennis@jabber.example.com',
     'password': 'password',
     'url': 'jabber.example.com',
     'room_prefix': 'conference'
 }
+
+# Override config object with local_settings.py
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
 app = Flask(__name__)
 
