@@ -16,11 +16,6 @@ Inspired by php-notify (https://github.com/jmara/php-notify)
 
     pip install -r requirements.txt
 
-### Install further requirements
-    
-    http://xmpppy.sourceforge.net/
-    https://code.google.com/p/ipaddress-py/
-
 ### Change the necessary settings
 
     jabber = {
