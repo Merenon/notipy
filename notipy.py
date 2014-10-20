@@ -8,7 +8,7 @@
 #                                          #
 #      @author Dennis Detering             #
 #      @email <yo@dety.eu>                 #
-#      @version 1.0                        #
+#      @version 1.1                        #
 #                                          #
 ############################################
 
@@ -30,7 +30,7 @@ app = Flask(__name__)
 @app.before_request
 def limit_remote_addr():
     IP = IPAddress(request.remote_addr)
-    if (IP not in IPNetwork('10.0.0.0/8')) and (IP not in IPNetwork('192.168.0.0/16')) and (IP != IPAddress('127.0.0.1')):
+    if not any(IP in IPNetwork(x) for x in allowed_ips):
         abort(403)
 
 
