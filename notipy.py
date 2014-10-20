@@ -15,6 +15,7 @@
 from netaddr import IPAddress, IPNetwork
 from jabberbot import JabberBot
 from flask import Flask, request, jsonify, abort
+from werkzeug.contrib.fixers import ProxyFix
 
 # Load config object from local_settings.py
 try:
@@ -33,12 +34,16 @@ except:
     raise
 
 app = Flask(__name__)
-
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 # Check for allowed IPs
 @app.before_request
 def limit_remote_addr():
     IP = IPAddress(request.remote_addr)
+
+    if app.debug:
+        print "Remote Address: %s" % IP
+
     if not any(IP in IPNetwork(x) for x in allowed_ips):
         abort(403)
 
@@ -98,5 +103,5 @@ def room(roomname):
 
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = debug
     app.run()

@@ -1,3 +1,5 @@
+debug = True
+
 jabber = {
     'id': 'dennis@jabber.example.com',
     'password': 'password',
