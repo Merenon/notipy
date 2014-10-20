@@ -23,6 +23,15 @@ except ImportError:
     print "[!] Error: no 'local_settings.py' config found!"
     exit(1)
 
+# Connect JabberBot
+try:
+    bot = JabberBot(jabber['id'], jabber['password'], debug=False)
+    bot.connect()
+    if bot.conn:
+        print '[+] JabberBot connected!'
+except:
+    raise
+
 app = Flask(__name__)
 
 
@@ -89,14 +98,5 @@ def room(roomname):
 
 
 if __name__ == "__main__":
-
-    try:
-        bot = JabberBot(jabber['id'], jabber['password'])
-        bot.connect()
-        if bot.conn:
-            print '[+] JabberBot connected!'
-    except:
-        raise
-
     app.debug = True
     app.run()
