@@ -24,17 +24,22 @@ except ImportError:
     print "[!] Error: no 'local_settings.py' config found!"
     exit(1)
 
-# Connect JabberBot
-try:
-    bot = JabberBot(jabber['id'], jabber['password'], debug=False)
-    bot.connect()
-    if bot.conn:
-        print '[+] JabberBot connected!'
-except:
-    raise
+
+bot = JabberBot(jabber['id'], jabber['password'], debug=False)
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
+
+# Check if jabberbot is connected, otherwise connect
+@app.before_request
+def connect_jabberbot():
+    if not bot.conn:
+        try:
+            bot.connect()
+            if bot.conn:
+                print '[+] JabberBot connected!'
+        except:
+            raise
 
 # Check for allowed IPs
 @app.before_request
